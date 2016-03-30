@@ -1,0 +1,116 @@
+/**************************************************************************
+ * 
+ * Show Image Preview button without disabled state. Normal show progress
+ * 
+ **************************************************************************/
+.button:disabled, .button:disabled > * {
+    -fx-opacity: 1.0 ;
+}
+
+.pagination.empty > .pagination-control {
+    visibility: hidden;
+}
+/**************************************************************************
+ * 
+ * Breadcrumb
+ * 
+ **************************************************************************/
+.breadcrumb {
+    -fx-background-color: 
+        linear-gradient(#b5b5b5, #d8d8d8),
+        linear-gradient(#f0f0f0 0%, #cccccc 50%, #f0f0f0 100%);
+    -fx-background-radius:16;
+    -fx-padding:  0 5 0 5;
+    -fx-background-insets: 0, 1, 2;
+}
+.breadcrumb .label {
+    -fx-padding: 2;
+    -fx-text-fill: black;
+    -fx-underline: true;
+}
+/**************************************************************************
+ * 
+ * TilePane
+ * 
+ **************************************************************************/
+.tile-pane-drag-over {
+    -fx-effect: innershadow(three-pass-box, green, 10, 0, 0, 0);
+    -fx-background-color: #cfcfcf;
+}
+.tile-pane {
+    -fx-background-color: #C6C6C6;
+}
+
+/**************************************************************************
+ * 
+ * Icons
+ * 
+ **************************************************************************/
+
+.search-img-button {
+    -fx-graphic: url('../img/search_16.png');
+}
+.add-img-button {
+    -fx-graphic: url('../img/import-imgs.png');
+}
+.back-img-button {
+    -fx-graphic: url('../img/left_16.png');
+}
+.save-img-button {
+    -fx-graphic: url('../img/save_16.png');
+}
+.save-new-img-button {
+    -fx-graphic: url('../img/plus_16.png');
+}
+.setting-img-button {
+    -fx-graphic: url('../img/gear_16.png');
+}
+.edit-img-button {
+    -fx-graphic: url('../img/pencil_16.png');
+}
+.bookmark-img-button {
+    -fx-graphic: url('../img/bookmark_16.png');
+}
+.label-img-button {
+    -fx-graphic: url('../img/label_16.png');
+}
+.document-img-button {
+    -fx-graphic: url('../img/document_16.png');
+}
+.sources-img-button {
+    -fx-graphic: url('../img/monitor_16.png');
+}
+.label-time-update {
+    -fx-graphic: url('../img/eye.png');
+}
+.edit {
+    -fx-graphic: url('../img/pencil_16.png');
+    -fx-padding: 4;
+}
+.delete {
+    -fx-graphic: url('../img/delete_16.png');
+    -fx-padding: 4;
+}
+/**************************************************************************
+ * 
+ * Clearable Text / Password Field
+ * 
+ **************************************************************************/
+.clearable-field .clear-button {
+    -fx-padding: 0 3 0 0;
+}
+
+.clearable-field .clear-button > .graphic {
+    -fx-background-color: black;
+    -fx-snap-to-pixel: false;
+    -fx-background-insets: 0 0 -1 0;
+    -fx-shape: "M 5.6875,1041.4559 0,1046.9872 l 5.6875,5.375 9.03125,0 0,-10.9063 -9.03125,0 z m 1.5625,1.9375 2.03125,2 2.0625,-2 1.46875,1.4688 -2.03125,2 2.03125,2 -1.46875,1.5312 -2.0625,-2.0312 -2.03125,2.0312 -1.46875,-1.5312 2.03125,-2 -2.03125,-2 1.46875,-1.4688 z";
+}
+
+.clearable-field .clear-button:hover > .graphic {
+    -fx-background-color: #333333;
+}
+
+.clearable-field .clear-button:pressed > .graphic {
+    -fx-background-color: #666666;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ACE Editor</title>
+</head>
+<body>
+
+<div id="editor" 
+     style="position:absolute;top:0;right:0;bottom:0;left:0;font-size:15px;"></div>
+
+<script src="js/ace-src-noconflict/ace.js" charset="utf-8"></script>
+<script>
+    // Fix copy from editor
+    ace.getCopyText = function () {
+        var text = this.getSelectedText();
+        javascript:alert("copy: " + text);
+        this._signal("copy", text);
+        return text;
+    };
+
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/github");
+    editor.getSession().setMode("ace/mode/markdown");
+    editor.getSession().setTabSize(4);
+    editor.getSession().setUseWrapMode(true);
+    editor.setShowInvisibles(true);
+    editor.setBehavioursEnabled(true);//auto pairing of quotes & brackets
+    editor.setShowPrintMargin(false);
+    editor.session.setUseSoftTabs(true);//use soft tabs (likely the default)
+
+    //Include auto complete
+    ace.config.loadModule('ace/ext/language_tools', function () {
+        editor.setOptions({
+            enableBasicAutocompletion: true,
+            enableSnippets: true
+        })
+
+        var snippetManager = ace.require("ace/snippets").snippetManager;
+
+        ace.config.loadModule("ace/snippets/markdown", function (m) {
+            if (m) {
+                snippetManager.files.javascript = m;
+                m.snippets = snippetManager.parseSnippetFile(m.snippetText);
+
+                // or do this if you already have them parsed
+                m.snippets.push({
+                    content: "\n\
+|${1:header1}|${2:header2}|\n\
+|--------|--------|\n\
+|${3:cell1-1}|${4:cell1-2}|\n\
+|${5:cell2-1}|${6:cell2-2}|\n\
+\n\
+",
+                    name: "tab2",
+                    tabTrigger: "tab2"
+                });
+                m.snippets.push({
+                    content: "\n\
+|${1:header1}|${2:header2}|${3:header3}|\n\
+|--------|--------|--------|\n\
+|${4:cell1-1}|${5:cell1-2}|${6:cell1-3}|\n\
+|${7:cell2-1}|${8:cell2-2}|${9:cell2-3}|\n\
+|${10:cell3-1}|${11:cell3-2}|${12:cell3-3}|\n\
+\n\
+",
+                    name: "tab3",
+                    tabTrigger: "tab3"
+                });
+                m.snippets.push({
+                    content: "\n\
+|${1:header1}|${2:header2}|${3:header3}|${4:header4}|\n\
+|--------|--------|--------|--------|\n\
+|${5:cell1-1}|${6:cell1-2}|${7:cell1-3}|${8:cell1-4}|\n\
+|${9:cell2-1}|${10:cell2-2}|${11:cell2-3}|${12:cell2-4}|\n\
+|${13:cell3-1}|${14:cell3-2}|${15:cell3-3}|${16:cell3-4}|\n\
+|${17:cell4-1}|${18:cell4-2}|${19:cell4-3}|${20:cell4-4}|\n\
+\n\
+",
+                    name: "tab4",
+                    tabTrigger: "tab4"
+                });
+                snippetManager.register(m.snippets, m.scope);
+            }
+        });
+    });
+
+    setInterval(function() {
+        fx.set(editor.getValue());
+    }, 2000);
+
+    function setValue(content) {
+        editor.setValue(content);
+    }
+
+    function pasteContent(content) {
+        editor.onPaste(content);
+    }
+
+    function injectText(text) {
+        editor.insert(text);
+    }
+
+</script>
+</body>
+</html>
