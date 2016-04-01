@@ -16,7 +16,8 @@
         <spring.data.jpa>1.9.2.RELEASE</spring.data.jpa>
         <jpa.version>1.0.0.Final</jpa.version>
         <hibernate.entitymanager.version>4.3.11.Final</hibernate.entitymanager.version>
-        <derby.version>10.12.1.1</derby.version>
+        <!--<derby.version>10.12.1.1</derby.version>-->
+        <h2.version>1.4.191</h2.version>
         <log4j.version>2.5</log4j.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -75,10 +76,17 @@
         </dependency>
         
         <!-- Java Derby embedded -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derby</artifactId>
             <version>${derby.version}</version>
+        </dependency>-->
+        
+        <!-- H2 database embedded -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
         </dependency>
         
         <!--Logging-->

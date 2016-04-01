@@ -28,7 +28,7 @@ NotebookFX is cross platform GUI program for creating and classification persona
 * [Spring Data JPA](https://github.com/spring-projects/spring-data-jpa)
 * [Hibernate ORM](http://hibernate.org/orm/)
 * [Hibernate metamodel](http://hibernate.org/orm/tooling/)
-* [Apache Derby](https://db.apache.org/derby/)
+* [H2 Database](http://www.h2database.com/html/main.html)
 * [Pegdown](https://github.com/sirthias/pegdown)
 
 ###Use JavaScript Libraries:

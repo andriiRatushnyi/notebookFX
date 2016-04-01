@@ -1,6 +1,5 @@
 package baobab.notebookfx;
 
-import baobab.notebookfx.config.AppConfiguration;
 import baobab.notebookfx.services.ContentManager;
 import baobab.notebookfx.utils.SpringFXLoader;
 import java.io.IOException;
@@ -47,7 +46,7 @@ public class Main extends Application {
             ApplicationContext applicationContext = SpringFXLoader.getInstance().getApplicationContex();
 
             applicationContext.getBean(ContentManager.class).close();
-            applicationContext.getBean(AppConfiguration.Shutdown.class).close();
+            //applicationContext.getBean(AppConfiguration.Shutdown.class).close();
         });
         stage.setMinHeight(600);
         stage.setMinWidth(800);

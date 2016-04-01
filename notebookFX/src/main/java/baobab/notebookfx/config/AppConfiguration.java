@@ -1,8 +1,6 @@
 package baobab.notebookfx.config;
 
 import baobab.notebookfx.models.states.PageState;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Hashtable;
 import java.util.Map;
 import javax.persistence.SharedCacheMode;
@@ -32,9 +30,11 @@ public class AppConfiguration {
     @Bean
     public DataSource springJpaDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.apache.derby.jdbc.EmbeddedDriver");
-        dataSource.setUrl("jdbc:derby:notebookDB");
+        //dataSource.setDriverClassName("org.apache.derby.jdbc.EmbeddedDriver");
+        //dataSource.setUrl("jdbc:derby:notebookDB");
         //dataSource.setUrl("jdbc:derby:notebookDB;create=true");
+        dataSource.setDriverClassName("org.h2.Driver");
+        dataSource.setUrl("jdbc:h2:./notebookDB");
         dataSource.setUsername("");
         dataSource.setPassword("");
         return dataSource;
@@ -49,8 +49,9 @@ public class AppConfiguration {
         //properties.put("hibernate.use_sql_comments", true);
 
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
-        adapter.setDatabasePlatform("org.hibernate.dialect.DerbyTenSevenDialect");
-        adapter.setShowSql(true);
+        //adapter.setDatabasePlatform("org.hibernate.dialect.DerbyTenSevenDialect");
+        adapter.setDatabasePlatform("org.hibernate.dialect.H2Dialect");
+        //adapter.setShowSql(true);
 
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(adapter);
@@ -68,22 +69,22 @@ public class AppConfiguration {
         return new JpaTransactionManager(this.entityManagerFactoryBean().getObject());
     }
 
-    @Bean
-    public Shutdown shutdown() {
-        return new Shutdown();
-    }
+//    @Bean
+//    public Shutdown shutdown() {
+//        return new Shutdown();
+//    }
 
     @Bean
     public PageState pageState() {
         return new PageState();
     }
 
-    public class Shutdown {
-
-        public void close() {
-            try {
-                DriverManager.getConnection("jdbc:derby:notebookDB;shutdown=true");
-            } catch (SQLException e) { }
-        }
-    }
+//    public class Shutdown {
+//
+//        public void close() {
+//            try {
+//                DriverManager.getConnection("jdbc:derby:notebookDB;shutdown=true");
+//            } catch (SQLException e) { }
+//        }
+//    }
 }
