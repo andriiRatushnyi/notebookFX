@@ -6,6 +6,8 @@ import baobab.notebookfx.models.Tag;
 import baobab.notebookfx.repositories.ContentRepository;
 import baobab.notebookfx.repositories.ImageRepository;
 import baobab.notebookfx.repositories.TagRepository;
+import java.io.File;
+import java.nio.file.FileSystems;
 import java.util.List;
 import java.util.Set;
 import javax.inject.Inject;
@@ -122,6 +124,12 @@ public class ContentManagerImpl implements ContentManager {
     public void deleteImages() {
         List<Image> unrelationImage = imageRepository.getUnrelationImages();
         unrelationImage.stream().forEach(image -> {
+            // Delete temp file
+            File imgFile = new File(System.getProperty("java.io.tmpdir") +
+                                           FileSystems.getDefault().getSeparator() +
+                                            image.getId().toString() + ".noteFX");
+            imgFile.delete();
+
             List<Content> contents = contentRepository.findAllByContentLike("%IMG#" + image.getId().toString() + "#IMG%");
             contents.stream()
                     .forEach(content -> {
