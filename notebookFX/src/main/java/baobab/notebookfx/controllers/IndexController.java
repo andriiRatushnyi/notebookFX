@@ -113,7 +113,6 @@ public class IndexController implements Initializable {
         ).forEach(treeViewItem -> treeViewItem.setSelected(true));
 
         checkBoxTreeList.stream()
-                .filter(checkBoxTreeItem -> checkBoxTreeItem.isLeaf())
                 .forEach(checkBoxTreeItem -> {
                     // save state
                     checkBoxTreeItem.selectedProperty()
