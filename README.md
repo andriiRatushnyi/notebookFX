@@ -4,7 +4,7 @@ NotebookFX is cross platform GUI program for creating and classification persona
 
 ##Features
 
-...
+[![NotebookFX](http://img.youtube.com/vi/c6ZN_UD4GzM/0.jpg)](http://www.youtube.com/watch?v=c6ZN_UD4GzM)
 
 ##ScreenShot
 
