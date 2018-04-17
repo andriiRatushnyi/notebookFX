@@ -1,18 +1,18 @@
-#NotebookFX
+# NotebookFX
 
 NotebookFX is cross platform GUI program for creating and classification personal codebase using markdown editor and tagging. This program like local web blog for saving contents, snippets code, images and using groups of tag for classification information. It written in JavaFX 8.
 
-##Features
+## Features
 
 [![NotebookFX](http://img.youtube.com/vi/c6ZN_UD4GzM/0.jpg)](http://www.youtube.com/watch?v=c6ZN_UD4GzM)
 
-##ScreenShot
+## ScreenShot
 
-###Editor Preview
+### Editor Preview
 
 ![Editor Preview](./images/editor_preview.png)
 
-###Main Window Search Preview
+### Main Window Search Preview
 
 ![Editor Preview](./images/mainwindow_preview.png)
 
@@ -21,7 +21,7 @@ NotebookFX is cross platform GUI program for creating and classification persona
 ![Editor Preview](./images/view_preview.png)
 
 
-###Use Java libraries:
+### Use Java libraries:
 
 * [ControlsFX](https://bitbucket.org/controlsfx/controlsfx/)
 * [SpringFramework](https://github.com/spring-projects/spring-framework)
@@ -31,22 +31,21 @@ NotebookFX is cross platform GUI program for creating and classification persona
 * [H2 Database](http://www.h2database.com/html/main.html)
 * [Pegdown](https://github.com/sirthias/pegdown)
 
-###Use JavaScript Libraries:
+### Use JavaScript Libraries:
 
 * [Ace (Ajax.org Cloud9 Editor)](https://github.com/ajaxorg/ace)
 * [Highlight.js](https://github.com/isagalaev/highlight.js)
 
-###Use CSS:
+### Use CSS:
 
 * [GitHub stylesheet for MarkdownPad](https://github.com/nicolashery/markdownpad-github)
 
 
-###Icons:
+### Icons:
 
 * http://sekkyumu.deviantart.com/art/Developpers-Icons-63052312
 * http://prokofusha.deviantart.com/art/Basic-set-125164098
 
-###License
+### License
 
 MIT - see [MIT license information](https://github.com/agershun/alasql/blob/develop/LICENSE)
-
