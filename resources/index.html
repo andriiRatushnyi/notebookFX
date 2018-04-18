@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="org/markdownwriterfx/preview/prism/prism.css">
+<script src="org/markdownwriterfx/preview/prism/prism-core.min.js"></script>
+<script src="org/markdownwriterfx/preview/prism/components/prism-clike.min.js"></script>
+<script src="org/markdownwriterfx/preview/prism/components/prism-java.min.js"></script>
+<link rel="stylesheet" href="org/markdownwriterfx/preview/prism/plugins/prism-line-numbers.css">
+<script src="org/markdownwriterfx/preview/prism/plugins/prism-line-numbers.js"></script>
+<link rel="stylesheet" href="org/markdownwriterfx/preview/prism/plugins/prism-line-highlight.css">
+<script src="org/markdownwriterfx/preview/prism/plugins/prism-line-highlight.js"></script>
+<style>
+body { margin: 0;}
+pre { display: inline-block; margin-top: 0; margin-bottom: 0; overflow: visible;}
+pre[data-line] { margin-top: -16px;padding-bottom: 0px !important;}
+</style>
+</head>
+<body>
+<pre class="line-numbers" data-line="1-2,5"><code class="language-java">package bccomteh;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultBoundedRangeModel;
+import javax.swing.DropMode;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+
+public class Bccomteh {
+
+    private static final int MASK = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    private String location = System.getProperty(&quot;user.dir&quot;);
+    private String[] price_arr = {&quot;Brain XML&quot;, &quot;Прайс Brain&quot;};
+    int progress_value = 0;
+    String count_goods_val = &quot;&quot;;
+    String count_new_goods_val = &quot;&quot;;
+    String selectedPrice = &quot;Brain XML&quot;;
+    File dir;
+    String[] shell = {this.location + &quot;/../.codes/brain.sh&quot;, this.location + &quot;/../.codes/brain.sh&quot;, this.location + &quot;/../.codes/create.sh&quot;};
+    JFrame frame;
+    JPanel panelTop;
+    JPanel panelTopButton;
+    JPanel panelTopGrid;
+    JPanel panelCenter;
+    JPanel panelBottom;
+    JComboBox priceChoser;
+    JButton load;
+    JButton run_shell;
+    JButton create_price;
+    JTree direct;
+    FileTableModel modl;
+    JTable goods;
+    JScrollPane tree_direct;
+    JScrollPane table_goods;
+    JProgressBar progress_parsed;
+    JProgressBar progress_create;
+    JLabel form_data;
+    JLabel all_goods;
+    JLabel count_goods;
+    JLabel new_goods;
+    JLabel count_new_goods;
+    JLabel in_price_goods;
+    JLabel count_all_goods;
+    JLabel delete_goods;
+    JLabel count_delete_goods;
+    JFormattedTextField dollar_curs;
+    Preferences prefs = Preferences.userRoot().node(&quot;unique_dollar&quot;);
+
+    public Bccomteh() {
+        try { // Nimbus
+            for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if (&quot;Nimbus&quot;.equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            // If Nimbus is not available, you can set the GUI to another look and feel.
+        }
+
+        // Обробка заватаження іконки
+        BufferedImage img = null;
+        try {
+            File fimg = new File(&quot;favicon.png&quot;);
+            img = ImageIO.read(fimg);
+        } catch (IOException ex) {
+        }
+
+        this.fixFiles();
+
+        this.frame = new JFrame(&quot;Bccomteh Обробка прайсів&quot;);
+        this.frame.setIconImage(img);
+        this.frame.setDefaultCloseOperation(3);
+        this.frame.setMinimumSize(new Dimension(600, 400));
+        this.frame.setLocationRelativeTo(null);
+
+        this.createPanels();
+
+        this.frame.getContentPane().add(this.panelTop, &quot;North&quot;);
+        this.frame.getContentPane().add(this.panelCenter, &quot;Center&quot;);
+        this.frame.getContentPane().add(this.panelBottom, &quot;South&quot;);
+
+        this.addKeyBindings();
+
+        this.frame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new Bccomteh();
+            }
+        });
+    }
+
+    class TextFilesFilter extends FileFilter {
+
+        @Override
+        public boolean accept(File file) {
+            if (file.isDirectory()) {
+                return true;
+            }
+            if (Bccomteh.this.selectedPrice.equals(&quot;Brain XML&quot;)) {
+                return file.getName().endsWith(&quot;.xml&quot;);
+            }
+            return file.getName().endsWith(&quot;.csv&quot;);
+        }
+
+        @Override
+        public String getDescription() {
+            if (Bccomteh.this.selectedPrice.equals(&quot;Brain XML&quot;)) {
+                return &quot;Розшрювана мо́ва розмітки (*.xml)&quot;;
+            }
+            return &quot;Текстовий файл (*.csv)&quot;;
+        }
+    }
+
+    private void addKeyBindings() {
+        //root maps
+        InputMap im = frame.getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        ActionMap am = frame.getRootPane().getActionMap();
+        //add custom action
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, /*MASK*/ 0), &quot;delete&quot;);
+        am.put(&quot;delete&quot;, deleteAction());
+
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F, MASK), &quot;ftpdialog&quot;);
+        am.put(&quot;ftpdialog&quot;, ftpAction());
+    }
+
+    private AbstractAction deleteAction() { // Видаляємо файл
+        AbstractAction delete = new AbstractAction() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FileTableModel model = (FileTableModel) goods.getModel();
+                int[] indexes = goods.getSelectedRows();
+                for (int i = 0; i &lt; indexes.length; i++) {
+                    int index = goods.convertRowIndexToModel(indexes[i]);
+                    indexes[i] = index;
+                    String filename = (String) model.getValueAt(index, 0);
+                    try {
+                        File file = new File(Bccomteh.this.location + &quot;/../category/&quot; + filename);
+                        file.delete();
+                    } catch (Exception ex) {
+                    }
+                }
+                model.removeRows(indexes);
+                model.fireTableDataChanged();
+
+            }
+        };
+        return delete;
+    }
+
+    private AbstractAction ftpAction() { // Видаляємо файл
+        AbstractAction ftpdialog = new AbstractAction() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FTPDialog ftpd = new FTPDialog(frame, Bccomteh.this.location + &quot;/../BCCOMTEH/&quot;);
+            }
+        };
+        return ftpdialog;
+    }
+}</code></pre>
+<script>
+window.addEventListener("load", function(event) {
+    window.scroll(0,document.querySelector("div[aria-hidden]").offsetTop);
+});
+</script>
+</body>
+</html>

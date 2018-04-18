@@ -1,0 +1,44 @@
+<html>
+<meta charset="UTF-8">
+<script>
+    /**
+     * Yml programming language: https://github.com/github/linguist/blob/master/lib/linguist/languages.yml
+     * Online converter yml to json: https://codebeautify.org/yaml-to-json-xml-csv
+     * $ python -m SimpleHTTPServer
+     */
+    fetch("languages.json")
+        .then(response => response.json())
+        .then(data => {
+            var str = "";
+            document.writeln("<pre>");
+            document.writeln("new P(\"Text\", \"text\", \"text/plain\", null),");
+            for (let property in data) {
+                if (data.hasOwnProperty(property)) {
+                    str += `"${property}", `;
+                    let progObj = data[property];
+                    let codeMirrorMimeType = progObj["codemirror_mime_type"];
+                    let aceMode= progObj["ace_mode"];
+                    let extensionsArr = progObj["extensions"];
+                    if (aceMode) {
+                        str += `"${aceMode}", `;
+                    } else {
+                        str += "null, ";
+                    }
+                    if (codeMirrorMimeType) {
+                        str += `"${codeMirrorMimeType}", `;
+                    } else {
+                        str += "null, ";
+                    }
+                    if (extensionsArr) {
+                        str += `"${extensionsArr.join("\", \"")}"`;
+                    } else {
+                        str += "null";
+                    }
+                    document.writeln(`new P(${str}),`);
+                    str = "";
+                }
+            }
+        });
+</script>
+
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baobab.notebookfx.controllers.PageController">
+   <children>
+      <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane VBox.vgrow="ALWAYS">
+               <children>
+                  <HBox layoutX="5.0" layoutY="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="205.0" AnchorPane.topAnchor="5.0">
+                     <children>
+                        <Hyperlink fx:id="titleHyp" style="-fx-border-width: 0px;" text="Ось приклад для відображення вього для чого потрібно" wrapText="true" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Hyperlink>
+                     </children>
+                  </HBox>
+                  <Label fx:id="viewCount" text="ok 1253" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="10.0" />
+                  <Label fx:id="updateTime" text="12.12.2015" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="10.0" />
+                  <Button fx:id="editBtn" mnemonicParsing="false" onAction="#handlerEdit" text="Е" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="5.0" />
+                  <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#handlerDelete" text="D" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
+               </children>
+            </AnchorPane>
+            <HBox fx:id="contentHB">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Картинки/treeInMoonBig.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="150.0" text="Проба відображення тексту для опису даної одиниці, яка буде відображати короткий опис для всього, що вам потрібно для відображення та всього іншого що потібно" wrapText="true" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <TilePane fx:id="paneTags" hgap="5.0" vgap="5.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Button mnemonicParsing="false" text="Button" />
+               </children>
+            </TilePane>
+            <Separator />
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="5.0" />
+   </padding>
+</AnchorPane>
