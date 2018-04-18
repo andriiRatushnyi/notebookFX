@@ -15,8 +15,10 @@ NotebookFX is cross platform GUI program for creating and classification persona
 * [Hibernate ORM](http://hibernate.org/orm/)
 * [Hibernate metamodel](http://hibernate.org/orm/tooling/)
 * [H2 Database](http://www.h2database.com/html/main.html)
-* [PlantUML](http://plantuml.com/)
 * [Flexmark Java](https://github.com/vsch/flexmark-java/)
+* [PlantUML](http://plantuml.com/)
+* [RxJava](https://github.com/ReactiveX/RxJava)
+* [RxJavaFX](https://github.com/ReactiveX/RxJavaFX)
 
 ### Use JavaScript Libraries:
 
