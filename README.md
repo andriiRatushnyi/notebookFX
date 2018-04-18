@@ -8,6 +8,7 @@ NotebookFX is cross platform GUI program for creating and classification persona
 
 ### Use Java libraries:
 
+* [Markdown Writer FX](https://github.com/JFormDesigner/markdown-writer-fx)
 * [ControlsFX](https://bitbucket.org/controlsfx/controlsfx/)
 * [Spring Framework](https://github.com/spring-projects/spring-framework)
 * [Spring Data JPA](https://github.com/spring-projects/spring-data-jpa)
@@ -15,7 +16,7 @@ NotebookFX is cross platform GUI program for creating and classification persona
 * [Hibernate metamodel](http://hibernate.org/orm/tooling/)
 * [H2 Database](http://www.h2database.com/html/main.html)
 * [PlantUML](http://plantuml.com/)
-* [flexmark-java](https://github.com/vsch/flexmark-java/)
+* [Flexmark Java](https://github.com/vsch/flexmark-java/)
 
 ### Use JavaScript Libraries:
 
